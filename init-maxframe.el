@@ -1,3 +1,5 @@
+(require-package 'maxframe)
+
 (autoload 'mf-max-display-pixel-width "maxframe" "" nil)
 (autoload 'mf-max-display-pixel-height "maxframe" "" nil)
 (autoload 'maximize-frame "maxframe" "" t)
@@ -17,8 +19,6 @@
                                         ns-auto-hide-menu-bar)
                                       23
                                     (+ 27 23))))
-
-(require 'init-utils) ; for with-selected-frame
 
 (defvar sanityinc/prev-frame nil "The selected frame before invoking `make-frame-command'.")
 (defadvice make-frame-command (before sanityinc/note-previous-frame activate)

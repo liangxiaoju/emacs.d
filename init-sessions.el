@@ -1,7 +1,5 @@
 ;; save a list of open files in ~/.emacs.d/.emacs.desktop
-;; save the desktop file automatically if it already exists
 (setq desktop-path '("~/.emacs.d"))
-(setq desktop-save 'if-exists)
 (desktop-save-mode 1)
 (defadvice desktop-read (around trace-desktop-errors)
   (let ((debug-on-error t))
@@ -11,6 +9,8 @@
 ;;----------------------------------------------------------------------------
 ;; Restore histories and registers after saving
 ;;----------------------------------------------------------------------------
+(require-package 'session)
+
 (setq session-save-file (expand-file-name "~/.emacs.d/.session"))
 (add-hook 'after-init-hook 'session-initialize)
 
