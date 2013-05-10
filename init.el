@@ -1,7 +1,8 @@
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path user-emacs-directory)
+(require 'init-benchmarking) ;; Measure startup time
 
 ;;----------------------------------------------------------------------------
 ;; Which functionality to enable (use t or nil for true and false)
@@ -74,6 +75,7 @@
 (require 'init-haskell)
 (require 'init-ruby-mode)
 (require 'init-rails)
+(require 'init-sql)
 
 (require 'init-paredit)
 (require 'init-lisp)
@@ -108,7 +110,7 @@
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
 

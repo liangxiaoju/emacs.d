@@ -10,11 +10,12 @@
 (setq-default
  blink-cursor-delay 0
  blink-cursor-interval 0.4
- bookmark-default-file "~/.emacs.d/.bookmarks.el"
+ bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
  buffers-menu-max-size 30
  case-fold-search t
  column-number-mode t
  compilation-scroll-output t
+ delete-selection-mode t
  ediff-split-window-function 'split-window-horizontally
  ediff-window-setup-function 'ediff-setup-windows-plain
  grep-highlight-matches t
@@ -105,7 +106,6 @@
 (global-set-key (kbd "C-c j") 'join-line)
 (global-set-key (kbd "C-c J") (lambda () (interactive) (join-line 1)))
 
-(global-set-key (kbd "M-T") 'transpose-lines)
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
@@ -165,7 +165,7 @@
 ;;----------------------------------------------------------------------------
 ;; Fill column indicator
 ;;----------------------------------------------------------------------------
-(when (> emacs-major-version 23)
+(when (eval-when-compile (> emacs-major-version 23))
   (require-package 'fill-column-indicator)
   (defun sanityinc/prog-mode-fci-settings ()
     (turn-on-fci-mode)
@@ -268,6 +268,12 @@
 (require-package 'visual-regexp)
 (global-set-key [remap query-replace-regexp] 'vr/query-replace)
 (global-set-key [remap replace-regexp] 'vr/replace)
+
+
+
+
+(when (executable-find "ag")
+  (require-package 'ag))
 
 
 (provide 'init-editing-utils)
