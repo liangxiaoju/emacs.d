@@ -1,4 +1,4 @@
-(setq w3m-default-display-inline-images t)
+(setq w3m-default-display-inline-images nil)
 (setq w3m-use-toolbar nil)
 
 ;;add search engines
