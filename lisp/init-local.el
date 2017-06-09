@@ -26,6 +26,14 @@
 ;;(set-frame-font "inconsolata-14")
 ;;(add-to-list 'default-frame-alist '(font . "Inconsolata-14"))
 
+;;===================for terminal=======================
+;;set background-color to nil, so it will use terminal's background color
+(add-hook 'after-make-console-frame-hooks
+          (lambda () (set-frame-parameter nil 'background-color nil)))
+(add-hook 'emacs-startup-hook
+          (lambda () (if (not window-system)
+                    (set-frame-parameter nil 'background-color nil))))
+
 ;;===================for python=======================
 ;;dont guess, use 4
 ;;(setq python-guess-indent nil)
@@ -85,9 +93,10 @@
 
 (require 'init-w3m nil t)
 
+(setq evil-default-state 'emacs)
+(setq evil-toggle-key "C-c vi")
 (require 'evil)
 (evil-mode 1)
-(setq evil-default-state 'emacs)
 
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq auto-mode-alist
